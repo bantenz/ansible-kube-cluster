@@ -2,11 +2,11 @@
 ansible ansible_host=localhost ansible_user=robert
 
 [masters]
-master ansible_host=13.229.155.105 ansible_user=cloud_user
+master ansible_host=<remote ip address> ansible_user=<remote user>
 
 [workers]
-worker1 ansible_host=13.229.144.232 ansible_user=cloud_user
-worker2 ansible_host=3.1.25.29 ansible_user=cloud_user
+worker1 ansible_host=<remote ip address> ansible_user=<remote user>
+worker2 ansible_host=<remote ip address> ansible_user=<remote user>
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
