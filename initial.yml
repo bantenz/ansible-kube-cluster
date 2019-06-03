@@ -1,0 +1,22 @@
+- hosts: all
+  pre_tasks:
+   - name: install python and apt update
+     raw: test -e /usr/bin/python || (apt-get -y update && apt-get install -y python-pip)
+  
+  tasks:
+   - name: create the 'robert' user
+     become: yes
+     user: name=robert append=yes state=present createhome=yes shell=/bin/bash
+
+   - name: allow user to sudoers
+     become: yes
+     lineinfile:
+       dest: /etc/sudoers
+       line: 'robert ALL=(ALL) NOPASSWD: ALL'
+       validate: 'visudo -cf %s'
+
+   - name: set up authorized keys for the robert user
+     become: yes
+     authorized_key: user=robert key="{{item}}"
+     with_file:
+      - ~/.ssh/id_rsa.pub

@@ -1,0 +1,9 @@
+- hosts: master
+  become: yes
+  tasks:
+  - name: Check kubectl version
+    become_user: robert
+    command: kubectl version
+    register: output
+  
+  - debug: var=output.stdout_lines

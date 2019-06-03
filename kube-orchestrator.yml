@@ -1,0 +1,17 @@
+- name: include initial script
+  import_playbook: initial.yml
+   
+- name: include kube-dependencies script
+  import_playbook: kube-dependencies.yml
+
+- name: kubectl version check
+  import_playbook: kube-check-version.yml
+
+- name: include master script
+  import_playbook: master.yml
+ 
+- name: include workers script
+  import_playbook: workers.yml
+
+- name: kubectl Nodes check
+  import_playbook: kube-get-nodes.yml

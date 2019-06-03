@@ -1,0 +1,9 @@
+- hosts: master
+  become: yes
+  tasks:
+  - name: Check kubectl nodes
+    become_user: robert
+    command: kubectl get nodes
+    register: output
+  
+  - debug: var=output.stdout_lines
